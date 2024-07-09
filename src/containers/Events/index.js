@@ -38,7 +38,7 @@ const EventList = () => {
   const typeList = new Set(data?.events.map((event) => event.type));
   //   console.log("Filtered Events:", filteredEvents);
 // console.log("Page Number:", pageNumber);
-// console.log("Type List:", Array.from(typeList));
+// console.log("Type List:", Array.from(typeList)); 
   return (
     <>
       {error && <div>An error occured</div>}

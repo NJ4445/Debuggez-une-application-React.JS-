@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { getMonth } from "../../helpers/Date";
 
@@ -12,21 +13,29 @@ const EventCard = ({
   small = false,
   ...props
 }) => (
-    <div
-      data-testid="card-testid"
-      className={`EventCard${small ? " EventCard--small" : ""}`}
-      {...props}
-    >
-      <div className="EventCard__imageContainer">
-        <img data-testid="card-image-testid" src={imageSrc} alt={imageAlt} />
-        <div className="EventCard__label">{label}</div>
-      </div>
-      <div className="EventCard__descriptionContainer">
-        <div className="EventCard__title">{title}</div>
-        <div className="EventCard__month">{getMonth(date)}</div>
-      </div>
+  <div
+    data-testid="card-testid"
+    className={`EventCard${small ? " EventCard--small" : ""}`}
+    {...props}
+  >
+    <div className="EventCard__imageContainer">
+      <img
+        data-testid="card-image-testid"
+        src={imageSrc}
+        alt={imageAlt}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "/path/to/placeholder-image.jpg"; // Gestion de l'erreur d'image
+        }}
+      />
+      <div className="EventCard__label">{label}</div>
     </div>
-  );
+    <div className="EventCard__descriptionContainer">
+      <div className="EventCard__title">{title}</div>
+      <div className="EventCard__month">{getMonth(date)}</div>
+    </div>
+  </div>
+);
 
 EventCard.propTypes = {
   imageSrc: PropTypes.string.isRequired,
@@ -40,6 +49,6 @@ EventCard.propTypes = {
 EventCard.defaultProps = {
   imageAlt: "image",
   small: false,
-}
+};
 
 export default EventCard;
