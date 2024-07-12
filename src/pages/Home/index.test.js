@@ -37,7 +37,7 @@ describe("When a page is created", () => {
     render(<EventList />);
   })
   it("a list a people is displayed", () => {
-    // to implement
+    // to implement 
     render(
       <PeopleCard
         imageSrc="http://src-image"
