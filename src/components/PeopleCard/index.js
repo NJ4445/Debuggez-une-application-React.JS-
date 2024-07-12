@@ -25,4 +25,4 @@ PeopleCard.defaultProps = {
   imageAlt: "",
 }
 
-export default PeopleCard;
+export default PeopleCard; 
