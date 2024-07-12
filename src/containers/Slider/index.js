@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
-
 import "./style.scss";
 
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
 
-  // Correction du tri des événements par date croissante
-  const byDateAsc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
+  // Tri des événements par date décroissante
+  const byDateDesc = data?.focus.sort((evtA, evtB) =>
+    new Date(evtA.date) < new Date(evtB.date) ? 1 : -1
   );
 
   const nextCard = () => {
-    setIndex(index < (byDateAsc?.length || 0) - 1 ? index + 1 : 0);
+    setIndex(index < (byDateDesc?.length || 0) - 1 ? index + 1 : 0);
   };
 
   // Utilisation de useEffect avec setInterval pour changer automatiquement l'index toutes les 5 secondes
@@ -25,11 +24,11 @@ const Slider = () => {
 
     // Nettoyage de l'intervalle lors du démontage du composant
     return () => clearInterval(interval);
-  }, [index, byDateAsc]); // Ajout de index et byDateAsc comme dépendances pour éviter des comportements inattendus
+  }, [index, byDateDesc]); // Ajout de index et byDateDesc comme dépendances pour éviter des comportements inattendus
 
   return (
     <div className="SlideCardList">
-      {byDateAsc?.map((event, idx) => (
+      {byDateDesc?.map((event, idx) => (
         // Affichage conditionnel des cartes, ajout des classes pour montrer ou cacher les cartes en fonction de l'index
         <div key={event.title} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
           <img src={event.cover} alt="forum" />
@@ -44,7 +43,7 @@ const Slider = () => {
       ))}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateAsc?.map((event, radioIdx) => (
+          {byDateDesc?.map((event, radioIdx) => (
             <input
               key={event.title}
               type="radio"
