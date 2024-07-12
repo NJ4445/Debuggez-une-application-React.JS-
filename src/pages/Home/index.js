@@ -129,7 +129,7 @@ const Page = () => {
               date={new Date(lastEvent.date)}
               small
               label="boom"
-            />
+            /> 
           ) : (
             <p>Aucune prestation disponible pour le moment.</p>
           )}

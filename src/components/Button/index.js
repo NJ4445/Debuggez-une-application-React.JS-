@@ -32,7 +32,7 @@ const Button = ({ title, onClick, type, disabled, children }) => {
           value={children}
           onClick={onClick}
           title={title}
-        />
+        /> 
       );
     default:
       return (
