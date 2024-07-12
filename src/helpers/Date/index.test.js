@@ -1,4 +1,4 @@
-import { getMonth } from './index'; // Ajustez le chemin d'importation en fonction de la structure de votre projet
+import { getMonth } from './index'; 
 
 describe("Date helper", () => {
     describe("When getMonth is called", () => {
