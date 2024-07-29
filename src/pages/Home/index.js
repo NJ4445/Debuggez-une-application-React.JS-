@@ -13,11 +13,14 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { data } = useData();
+  const { data } = useData(); // Utilisation du hook useData pour obtenir les données.
+
+   // Calcul du dernier événement en utilisant reduce pour trouver l'événement avec la date la plus récente.
   const lastEvent = data?.events.reduce(
     (prev, current) => (prev.date > current.date ? prev : current),
     {}
   );
+  
   return (
     <>
       <header>

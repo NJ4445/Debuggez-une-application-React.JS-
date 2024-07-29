@@ -46,10 +46,18 @@ describe("When a page is created", () => {
         position="test position"
       />
     );
+    expect(screen.getByAltText("image-alt-text")).toBeInTheDocument();
+    expect(screen.getByText("test name")).toBeInTheDocument();
+    expect(screen.getByText("test position")).toBeInTheDocument();
   })
   it("a footer is displayed", () => {
     // to implement
+    render(<Home />);
+    expect(screen.getByText("Notre dernière prestation")).toBeInTheDocument();
+    expect(screen.getByText("Contactez-nous")).toBeInTheDocument();
+    expect(screen.getByText("45 avenue de la République, 75000 Paris")).toBeInTheDocument();
   })
+  
   it("an event card, with the last event, is displayed", () => {
     // to implement
     render(<EventCard 
